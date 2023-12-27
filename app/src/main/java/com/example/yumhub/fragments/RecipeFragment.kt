@@ -423,24 +423,24 @@ class RecipeFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(item: RecipeItem) {
-            val recipe_type = item.recipe_type
-            val recipe_difficulty = item.recipe_difficulty
-            val recipe_image = item.recipe_image
-            val recipe_title = item.recipe_title
-            val recipe_quantity = item.recipe_quantity
-            val recipe_ingredients = item.recipe_ingredients
-            val recipe_preparation_steps = item.recipe_preparation_steps
+        val recipe_type = item.recipe_type
+        val recipe_difficulty = item.recipe_difficulty
+        val recipe_image = item.recipe_image
+        val recipe_title = item.recipe_title
+        val recipe_quantity = item.recipe_quantity
+        val recipe_ingredients = item.recipe_ingredients
+        val recipe_preparation_steps = item.recipe_preparation_steps
 
 
-            val i = Intent(requireContext() as Activity, RecipeItemActivity::class.java)
-            i.putExtra("recipe_type", recipe_type)
-            i.putExtra("recipe_difficulty", recipe_difficulty)
-            i.putExtra("recipe_image", recipe_image)
+        val i = Intent(requireContext() as Activity, RecipeItemActivity::class.java)
+        i.putExtra("recipe_type", recipe_type)
+        i.putExtra("recipe_difficulty", recipe_difficulty)
+        i.putExtra("recipe_image", recipe_image)
 
-            i.putExtra("recipe_title", recipe_title)
-            i.putExtra("recipe_quantity", recipe_quantity)
-            i.putExtra("recipe_ingredients", recipe_ingredients)
-            i.putExtra("recipe_preparation_steps", recipe_preparation_steps)
-            startActivity(i)
+        i.putExtra("recipe_title", recipe_title)
+        i.putExtra("recipe_quantity", recipe_quantity)
+        i.putExtra("recipe_ingredients", recipe_ingredients)
+        i.putExtra("recipe_preparation_steps", recipe_preparation_steps)
+        startActivity(i)
     }
 }
