@@ -1,19 +1,18 @@
 package com.example.yumhub.fragments
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.yuhub.models.RecipeItem
 import com.example.yumhub.R
-import com.example.yumhub.RecipeItemActivity
-import com.example.yumhub.adapters.RecipeListAdapter
+import com.example.yumhub.adapters.RecyclerAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RecipeFragment : Fragment() {
-    private lateinit var listView: ListView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<RecipeItem>
 
     // TODO: Rename and change types of parameters
@@ -55,8 +54,8 @@ class RecipeFragment : Fragment() {
         // Title
         (activity as AppCompatActivity).supportActionBar?.title = "Recipes"
 
-        // Get the reference to the ListView
-        listView = root.findViewById(R.id.list_of_recipes)
+        // Get the reference to the RecyclerView
+        recyclerView = root.findViewById(R.id.list_of_recipes)
 
         // Sample data for the ListView
         val recipe_images = intArrayOf(
@@ -367,33 +366,35 @@ class RecipeFragment : Fragment() {
             recipeArrayList.add(recipe)
         }
 
-        listView.isClickable = true
-        listView.adapter = RecipeListAdapter(requireContext() as Activity, recipeArrayList)
+        recyclerView.setHasFixedSize(true);
 
-        listView.setOnItemClickListener { parent, view, position, id ->
-            val recipe_type = recipe_types[position]
-            val recipe_difficulty = recipe_difficulties[position]
-            val recipe_image = recipe_images[position]
-            val recipe_title = recipe_titles[position]
-            val recipe_quantity = recipe_quantites[position]
-            val recipe_ingredients = recipe_ingredients[position]
-            val recipe_preparation_steps = recipe_preparation_steps[position]
+        recyclerView.layoutManager = LinearLayoutManager(requireContext() as Activity)
+        recyclerView.adapter = RecyclerAdapter(recipeArrayList)
 
-
-            val i = Intent(requireContext() as Activity, RecipeItemActivity::class.java)
-            i.putExtra("recipe_type", recipe_type)
-            i.putExtra("recipe_difficulty", recipe_difficulty)
-            i.putExtra("recipe_image", recipe_image)
-
-            i.putExtra("recipe_title", recipe_title)
-            i.putExtra("recipe_quantity", recipe_quantity)
-            i.putExtra("recipe_ingredients", recipe_ingredients)
-            i.putExtra("recipe_preparation_steps", recipe_preparation_steps)
-
-
-            startActivity(i)
-
-        }
+//        listView.setOnItemClickListener { parent, view, position, id ->
+//            val recipe_type = recipe_types[position]
+//            val recipe_difficulty = recipe_difficulties[position]
+//            val recipe_image = recipe_images[position]
+//            val recipe_title = recipe_titles[position]
+//            val recipe_quantity = recipe_quantites[position]
+//            val recipe_ingredients = recipe_ingredients[position]
+//            val recipe_preparation_steps = recipe_preparation_steps[position]
+//
+//
+//            val i = Intent(requireContext() as Activity, RecipeItemActivity::class.java)
+//            i.putExtra("recipe_type", recipe_type)
+//            i.putExtra("recipe_difficulty", recipe_difficulty)
+//            i.putExtra("recipe_image", recipe_image)
+//
+//            i.putExtra("recipe_title", recipe_title)
+//            i.putExtra("recipe_quantity", recipe_quantity)
+//            i.putExtra("recipe_ingredients", recipe_ingredients)
+//            i.putExtra("recipe_preparation_steps", recipe_preparation_steps)
+//
+//
+//            startActivity(i)
+//
+//        }
 
         return root
 
