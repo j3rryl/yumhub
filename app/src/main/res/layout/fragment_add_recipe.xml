@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_above="@+id/bottom_navigation_bar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.AddRecipeFragment">
 
@@ -15,10 +16,15 @@
         app:title="Add Recipe"
         android:theme="@style/ToolbarTheme"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+    <ScrollView
+        android:layout_below="@id/add_recipe_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:orientation="vertical">
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_title_layout"
@@ -36,7 +42,7 @@
                 app:endIconTint="@color/black"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/black"
-                app:placeholderText="John">
+                app:placeholderText="Recipe Title">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_title"
@@ -61,7 +67,7 @@
             app:endIconTint="@color/black"
             app:errorEnabled="true"
             app:hintTextColor="@color/black"
-            app:placeholderText="John">
+            app:placeholderText="Difficulty">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_difficulty"
@@ -86,7 +92,7 @@
             app:endIconTint="@color/black"
             app:errorEnabled="true"
             app:hintTextColor="@color/black"
-            app:placeholderText="John">
+            app:placeholderText="Recipe Type">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_type"
@@ -111,14 +117,14 @@
             app:endIconTint="@color/black"
             app:errorEnabled="true"
             app:hintTextColor="@color/black"
-            app:placeholderText="John">
+            app:placeholderText="Ingredients">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter ingredients"
-                android:inputType="textCapSentences" />
+                android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_prep_layout"
@@ -136,14 +142,14 @@
             app:endIconTint="@color/black"
             app:errorEnabled="true"
             app:hintTextColor="@color/black"
-            app:placeholderText="John">
+            app:placeholderText="Preparation Steps">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_prep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter preparation steps"
-                android:inputType="textCapSentences" />
+                android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_servings_layout"
@@ -161,7 +167,7 @@
             app:endIconTint="@color/black"
             app:errorEnabled="true"
             app:hintTextColor="@color/black"
-            app:placeholderText="John">
+            app:placeholderText="Servings">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_servings"
@@ -177,5 +183,5 @@
             android:text="Save Recipe"
             />
     </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>
