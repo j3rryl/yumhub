@@ -1,11 +1,11 @@
 package com.example.yumhub.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.yumhub.R
 import com.example.yumhub.roomdb.RecipeItem
@@ -13,6 +13,7 @@ import com.example.yumhub.roomdb.RecipeItemDatabase
 import com.example.yumhub.roomdb.RecipeItemRepository
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,6 +88,28 @@ class AddRecipeFragment : Fragment() {
                 1 // Default value if servingsText is empty
             }
 
+            val resourceIds = intArrayOf(
+                R.drawable.avocado,
+                R.drawable.beef,
+                R.drawable.bolognese,
+                R.drawable.burrito,
+                R.drawable.chicken,
+                R.drawable.curry,
+                R.drawable.lemon,
+                R.drawable.pancakes,
+                R.drawable.panini,
+                R.drawable.salmon,
+                R.drawable.shrimp,
+                R.drawable.veggie,
+                R.drawable.wrap,
+                R.drawable.yorgurt,
+                R.drawable.quinoa
+            )
+
+            val randomIndex = Random.nextInt(resourceIds.size) // Generates a random number from 0 to 9
+
+            val selectedResourceId = resourceIds[randomIndex]
+
             val item = RecipeItem (
                 recipe_title = titleText,
                 recipe_type = typeText,
@@ -94,7 +117,7 @@ class AddRecipeFragment : Fragment() {
                 recipe_ingredients = ingredientsText,
                 recipe_preparation_steps= prepText,
                 recipe_quantity= recipeQuantity,
-                recipe_image = R.drawable.chicken
+                recipe_image = selectedResourceId
             )
             lifecycleScope.launch {
                 repository.insertRecipeItem(item)
