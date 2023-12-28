@@ -1,15 +1,16 @@
 package com.example.yumhub.adapters
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuhub.models.RecipeItem
 import com.example.yumhub.R
+import com.example.yumhub.roomdb.RecipeItem
 
-class RecyclerAdapter (private val dataList: ArrayList<RecipeItem>, private val itemClickListener: OnItemClickListener): RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
+class RecyclerAdapter (private val context: Activity, private val dataList: ArrayList<RecipeItem>, private val itemClickListener: OnItemClickListener): RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val recipeImage: ImageView = itemView.findViewById(R.id.recipe_photo)
@@ -22,7 +23,7 @@ class RecyclerAdapter (private val dataList: ArrayList<RecipeItem>, private val 
         fun onItemClick(item: RecipeItem)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recipe_card, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.recipe_card, parent, false)
         return MyViewHolder(view)
     }
 
@@ -40,5 +41,15 @@ class RecyclerAdapter (private val dataList: ArrayList<RecipeItem>, private val 
 
     override fun getItemCount(): Int {
         return dataList.size
+    }
+    fun clear() {
+        dataList.clear()
+        notifyDataSetChanged()
+    }
+
+    // Add a list of items to the dataList
+    fun addAll(items: List<RecipeItem>) {
+        dataList.addAll(items)
+        notifyDataSetChanged()
     }
 }
