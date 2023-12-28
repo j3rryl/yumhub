@@ -20,6 +20,7 @@ import com.example.yumhub.roomdb.RecipeApplication
 import com.example.yumhub.roomdb.RecipeItem
 import com.example.yumhub.roomdb.RecipeItemModelFactory
 import com.example.yumhub.roomdb.RecipeViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +34,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class RecipeFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
+    private lateinit var floatingButton: FloatingActionButton
     private lateinit var recipeArrayList: ArrayList<RecipeItem>
     private val recipeViewModel: RecipeViewModel by viewModels {
         RecipeItemModelFactory((requireActivity().application as RecipeApplication).repository)
@@ -68,6 +70,23 @@ class RecipeFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
         recyclerView = root.findViewById(R.id.list_of_recipes)
 
         recyclerView.setHasFixedSize(true)
+        floatingButton = root.findViewById(R.id.floatingActionButton)
+        floatingButton.setOnClickListener{
+            val newFragment = AddRecipeFragment()
+
+            // Begin the fragment transaction
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+
+            // Replace the current fragment with the new one
+            transaction.replace(R.id.frame_layout, newFragment)
+
+            // Add the transaction to the back stack (optional, enables back navigation)
+            transaction.addToBackStack(null)
+
+            // Commit the transaction
+            transaction.commit()
+        }
+
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext() as Activity)
 //        recyclerView.adapter = RecyclerAdapter(recipeArrayList, this)
