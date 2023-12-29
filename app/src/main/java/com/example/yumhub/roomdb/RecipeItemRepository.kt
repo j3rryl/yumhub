@@ -14,6 +14,12 @@ class RecipeItemRepository(private val recipeItemDao: RecipeItemDao) {
     }
 
     @WorkerThread
+    suspend fun deleteRecipeItem(recipeItem: RecipeItem)
+    {
+        recipeItemDao.deleteRecipeItem(recipeItem)
+    }
+
+    @WorkerThread
     suspend fun updateTaskItem(recipeItem: RecipeItem)
     {
         recipeItemDao.updateRecipeItem(recipeItem)

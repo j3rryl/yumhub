@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeItemDao {
-    @Query("SELECT * FROM recipe_item_table ORDER BY id ASC")
+    @Query("SELECT * FROM recipe_item_table ORDER BY id DESC")
     fun allRecipeItems(): Flow<List<RecipeItem>>
 
-    @Query("SELECT * FROM recipe_item_table")
+    @Query("SELECT * FROM recipe_item_table ORDER BY id DESC")
     fun getAllRecipeItems(): List<RecipeItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
